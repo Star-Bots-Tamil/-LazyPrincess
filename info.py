@@ -1,5 +1,5 @@
 import re
-from os import environ
+from os import getenv, environ
 
 id_pattern = re.compile(r'^.\d+$')
 def is_enabled(value, default):
@@ -11,93 +11,129 @@ def is_enabled(value, default):
         return default
 
 # Bot information
-SESSION = environ.get('SESSION', 'LazyPrincess')
-API_ID = int(environ.get('API_ID', '13323016'))
-API_HASH = environ.get('API_HASH', '68e791e616100248b0a53ae86a661a12')
-BOT_TOKEN = environ.get('BOT_TOKEN', "")
-
-#Port
-PORT = environ.get("PORT", "8080")
+SESSION = environ.get('SESSION', 'Media_search')
+API_ID = int(environ.get('API_ID', '11973721'))
+API_HASH = environ.get('API_HASH', '5264bf4663e9159565603522f58d3c18')
+BOT_TOKEN = environ.get('BOT_TOKEN', "5865794282:AAFuNcRCmGHygZor3ANPcJi6pVQp98ffDZw")
 
 # Bot settings
 CACHE_TIME = int(environ.get('CACHE_TIME', 300))
-USE_CAPTION_FILTER = bool(environ.get('USE_CAPTION_FILTER', False))
-PICS = (environ.get('PICS', 'https://telegra.ph/file/68d28011b2bc356b5db01.png')).split()
+USE_CAPTION_FILTER = bool(environ.get('USE_CAPTION_FILTER', True))
+PICS = (environ.get('PICS', 'https://graph.org/file/700b279c54f0d8809fccb.jpg https://graph.org/file/1412d9f93d77c350d8268.jpg')).split()
 
 # Admins, Channels & Users
-ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '1484670284').split()]
-CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('CHANNELS', '-1001620891165').split()]
-auth_users = [int(user) if id_pattern.search(user) else user for user in environ.get('AUTH_USERS', '1484670284').split()]
+ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '1391556668 5162208212 5239847373').split()]
+CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('CHANNELS', '0').split()]
+auth_users = [int(user) if id_pattern.search(user) else user for user in environ.get('AUTH_USERS', '1391556668 5162208212 5239847373').split()]
 AUTH_USERS = (auth_users + ADMINS) if auth_users else []
-auth_channel = environ.get('AUTH_CHANNEL', '-1001765107260')
+auth_channel = environ.get('AUTH_CHANNEL', '-1001822021062')
 auth_grp = environ.get('AUTH_GROUP')
 AUTH_CHANNEL = int(auth_channel) if auth_channel and id_pattern.search(auth_channel) else None
 AUTH_GROUPS = [int(ch) for ch in auth_grp.split()] if auth_grp else None
 
 # MongoDB information
-DATABASE_URI = environ.get('DATABASE_URI', "")
+DATABASE_URI = environ.get('DATABASE_URI', "mongodb+srv://KarthikMovies:KarthikUK007@cluster0.4l5byki.mongodb.net/?retryWrites=true&w=majority")
 DATABASE_NAME = environ.get('DATABASE_NAME', "Cluster0")
-COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
+COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Star_files')
 
 # Others
-LOG_CHANNEL = int(environ.get('LOG_CHANNEL', '-1001782419622'))
-SUPPORT_CHAT = environ.get('SUPPORT_CHAT', 'LazyPrincessSupport')
-P_TTI_SHOW_OFF = is_enabled((environ.get('P_TTI_SHOW_OFF', "True")), True)
-IMDB = is_enabled((environ.get('IMDB', "True")), False)
+LOG_CHANNEL = int(environ.get('LOG_CHANNEL', '-1001821439025'))
+SUPPORT_CHAT = environ.get('SUPPORT_CHAT', 'Star_Bots_Tamil_Support')
+P_TTI_SHOW_OFF = is_enabled((environ.get('P_TTI_SHOW_OFF', "False")), False)
+IMDB = is_enabled((environ.get('IMDB', "True")), True)
 SINGLE_BUTTON = is_enabled((environ.get('SINGLE_BUTTON', "True")), False)
-CUSTOM_FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", "⚡<b>File uploaded by [Movies Adaa™](https://t.me/real_MoviesAdda2)</b>⚡\n\nName: {file_caption} \n\n⚙️ <b>Size: </b><code>{file_size}</code>🔥  ↭ <b>Join Now [MoviesAdda™](https://t.me/real_MoviesAdda2)</b> ↭  🔥")
-BATCH_FILE_CAPTION = environ.get("BATCH_FILE_CAPTION", "⚡<b>File uploaded by [Movies Adaa™](https://t.me/real_MoviesAdda2)</b>⚡\n\nName: {file_caption} \n\n⚙️ <b>Size: </b><code>{file_size}</code>🔥  ↭ <b>Join Now [MoviesAdda™](https://t.me/real_MoviesAdda2)</b> ↭  🔥")
-IMDB_TEMPLATE = environ.get("IMDB_TEMPLATE", "<b>Your Query: {query}</b> \n‌‌‌‌IMDb: \n\n🏷 Title: {title}\n🌟 Rating : {rating}/10\n🎭 Genres: {genres}\n📆 Year: {year}\n⏰ Duration : {runtime}\n🎙️ Languages : {languages}\n🔖 Plot : {plot}\n\n♥️ we are nothing without you ♥️ \n\n💛 Please Share Us 💛\n\n⚠️Click on the button 👇 below to get your query privately")
-LONG_IMDB_DESCRIPTION = is_enabled(environ.get("LONG_IMDB_DESCRIPTION", "False"), False)
+CUSTOM_FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", "<b>[Star Movies Tamil](https://t.me/Star_Moviess_Tamil) - <code>{file_name}</code>\n\n🎥 Get More Movies/Series Files 📂 in [Star Movies Bot](https://t.me/Star_Moviess_Bot)\n📢 Update Channel :- [Star Movies Tamil](https://t.me/Star_Moviess_Tamil)\n🤖 Bot Channel :- [Star Bots Tamil](https://t.me/Star_Bots_Tamil)</b>")
+BATCH_FILE_CAPTION = environ.get("BATCH_FILE_CAPTION", CUSTOM_FILE_CAPTION)
+IMDB_TEMPLATE = environ.get("IMDB_TEMPLATE", "<b>🎥 Movie :- <a href={url}>{title}</a>\n\n🎭 Genres :- {genres}\n\n📆 Year :- <a href={url}/releaseinfo>{year}</a>\n\n🌟 Rating :- <a href={url}/ratings>{rating}</a> / 10 (Based on {votes} Users Ratings.)\n\n🎙️ Languages :- {languages}\n\n⏰ Duration :- {runtime} Minutes\n\n🕺 Director :- {director}\n\n🗺️ Countries :- {countries}\n\n📢 Update Channel :-</b> <a href=https://t.me/Star_Moviess_Tamil><b>Star Movies Tamil</b></a>\n\n<b>🤖 Bot Channel :- <a href=https://t.me/Star_Bots_Tamil><b></b>Star Bots Tamil</a></b>")
+LONG_IMDB_DESCRIPTION = is_enabled(environ.get("LONG_IMDB_DESCRIPTION", "True"), False)
 SPELL_CHECK_REPLY = is_enabled(environ.get("SPELL_CHECK_REPLY", "True"), False)
 MAX_LIST_ELM = environ.get("MAX_LIST_ELM", None)
 INDEX_REQ_CHANNEL = int(environ.get('INDEX_REQ_CHANNEL', LOG_CHANNEL))
-FILE_STORE_CHANNEL = [int(ch) for ch in (environ.get('FILE_STORE_CHANNEL', '')).split()]
+FILE_STORE_CHANNEL = [int(ch) for ch in (environ.get('FILE_STORE_CHANNEL', '-1001871766752')).split()]
 MELCOW_NEW_USERS = is_enabled((environ.get('MELCOW_NEW_USERS', "True")), True)
-PROTECT_CONTENT = is_enabled((environ.get('PROTECT_CONTENT', "False")), False)
-PUBLIC_FILE_STORE = is_enabled((environ.get('PUBLIC_FILE_STORE', "False")), True)
-
-# _______________________________________________________________________________________________________________ #
-# __________________________________________Credit_______________________________________________________________ #
-# _______________________________________LazyDeveloper___________________________________________________________ #
-# _____________________________A real Developer always gives Credits_____________________________________________ #
-# _______________________________________________________________________________________________________________ #
+PROTECT_CONTENT = is_enabled((environ.get('PROTECT_CONTENT', "True")), False)
+PUBLIC_FILE_STORE = is_enabled((environ.get('PUBLIC_FILE_STORE', "True")), False)
 
 #LazyRenamer Configs
 FLOOD = int(environ.get("FLOOD", "10"))
-# FLOOD is for renaming files -> set value in [seconds] in this field ! ex : for 30 seconds use 30 --\\ for 1 minute use 60 -------- ! 
-LAZY_MODE = bool(environ.get("LAZY_MODE"))
-#Add user id of the user in this field those who you want to be Authentic user for file renaming features --------- !
-lazy_renamers = [int(lazrenamers) if id_pattern.search(lazrenamers) else lazrenamers for lazrenamers in environ.get('LAZY_RENAMERS', '').split()]
+LAZY_MODE = bool(environ.get("LAZY_MODE", "True"))
+#Add user id of the user in this field those who you want to be Authentic user for file renaming features
+lazy_renamers = [int(lazrenamers) if id_pattern.search(lazrenamers) else lazrenamers for lazrenamers in environ.get('LAZY_RENAMERS', '1391556668 5162208212 5239847373').split()]
 LAZY_RENAMERS = (lazy_renamers + ADMINS) if lazy_renamers else []
-# Only Give Value in LAZY_RENAMERS if you have enabled LAZY_MODE ----- !
-REQ_CHANNEL = int(environ.get('REQ_CHANNEL'))
-#   REQ_CHANNEL is for the logs of that content name which is not found in group -- !
-URL_MODE = is_enabled((environ.get("URL_MODE")), True)
-# Use True false in url mode => Set value true if you want shortlinks - else - use value False ----- !
+REQ_CHANNEL = int(environ.get('REQ_CHANNEL', "-1001871766752"))
 
-# URL Shortener
-URL_SHORTENR_WEBSITE = environ.get('URL_SHORTENR_WEBSITE', 'api.shareus.in/shortLink')
-URL_SHORTNER_WEBSITE_API = environ.get('URL_SHORTNER_WEBSITE_API', 'I3Khu0fwfbWpd1W2ofcyP2znDA12')
+#ai
+OPENAI_API = environ.get("OPENAI_API", "")
+AI = is_enabled((environ.get("AI","False")), False)
+LAZY_AI_LOGS = int(environ.get("LAZY_AI_LOGS","-1001871766752")) #GIVE YOUR NEW LOG CHANNEL ID TO STORE MESSAGES THAT THEY SEARCH IN BOT PM.... [ i have added this to keep an eye on the users message, to avoid misuse of LazyPrincess ]
+# Requested Content template variables ---
+ADMIN_USRNM = environ.get('ADMIN_USRNM','TG_Karthik') # WITHOUT @
+MAIN_CHANNEL_USRNM = environ.get('MAIN_CHANNEL_USRNM','Star_Moviess_Tamil') # WITHOUT @
+DEV_CHANNEL_USRNM = environ.get('DEV_CHANNEL_USRNM','Star_Channels_Tamil') # WITHOUT @
+LAZY_YT_HANDLE = environ.get('LAZY_YT_HANDLE','Star_Bots_Tamil')  # WITHOUT @ [  add only handle - don't add full url  ] 
+MOVIE_GROUP_USERNAME = environ.get('MOVIE_GROUP_USERNAME', "Star_Movies_Request") #[ without @ ]
+
+# Url Shortner
+URL_MODE = is_enabled((environ.get("URL_MODE", "True")), False)
+URL_SHORTENR_WEBSITE = environ.get('URL_SHORTENR_WEBSITE', 'shareus.io') #Always use website url from api section 
+URL_SHORTNER_WEBSITE_API = environ.get('URL_SHORTNER_WEBSITE_API', 'IiXFmlsLukgMvDpc3t3FHbLal4u1')
+LZURL_PRIME_USERS = [int(lazyurlers) if id_pattern.search(lazyurlers) else lazyurlers for lazyurlers in environ.get('LZURL_PRIME_USERS', '1391556668 5162208212 5239847373').split()]
+lazy_groups = environ.get('LAZY_GROUPS','')
+LAZY_GROUPS = [int(lazy_groups) for lazy_groups in lazy_groups.split()] if lazy_groups else None # ADD GROUP ID IN THIS VARIABLE
+my_users = [int(my_users) if id_pattern.search(my_users) else my_users for my_users in environ.get('MY_USERS', '1391556668 5162208212 5239847373').split()]
+MY_USERS = (my_users) if my_users else []
+BOT_USERNAME = environ.get('BOT_USERNAME' ,'Star_Moviess_Bot' )
+
+# Online Stream and Download
+PORT = int(environ.get('PORT', 8080))
+NO_PORT = bool(environ.get('NO_PORT', True))
+APP_NAME = None
+if 'DYNO' in environ:
+    ON_HEROKU = True
+    APP_NAME = environ.get('APP_NAME', 'starmoviesbot')
+else:
+    ON_HEROKU = False
+BIND_ADRESS = str(getenv('WEB_SERVER_BIND_ADDRESS', '0.0.0.0'))
+FQDN = str(getenv('FQDN', BIND_ADRESS)) if not ON_HEROKU or getenv('FQDN') else APP_NAME+'.herokuapp.com'
+URL = "https://{}/".format(FQDN) if ON_HEROKU or NO_PORT else \
+    "http://{}:{}/".format(FQDN, PORT)
+SLEEP_THRESHOLD = int(environ.get('SLEEP_THRESHOLD', '60'))
+WORKERS = int(environ.get('WORKERS', '4'))
+SESSION_NAME = str(environ.get('SESSION_NAME', 'LazyBot'))
+MULTI_CLIENT = False
+HASH_LENGTH = int(environ.get("HASH_LENGTH", 7))
+name = str(environ.get('name', 'LazyPrincess'))
+FILES_CHANNEL = int(
+    environ.get("FILES_CHANNEL", "-1001871766752")
+)
+PING_INTERVAL = int(environ.get("PING_INTERVAL", "1200"))  # 20 minutes
+if 'DYNO' in environ:
+    ON_HEROKU = True
+    APP_NAME = str(getenv('APP_NAME'))
+
+else:
+    ON_HEROKU = False
+HAS_SSL=bool(getenv('HAS_SSL', True))
+if HAS_SSL:
+    URL = "https://{}/".format(FQDN)
+else:
+    URL = "http://{}/".format(FQDN)
+REPO_OWNER = "TG_Karthik"
+BANNED_CHANNELS = list(set(int(x) for x in str(getenv("BANNED_CHANNELS", "-1001296894100")).split()))
 
 # Auto Delete For Group Message (Self Delete) #
-SELF_DELETE_SECONDS = int(environ.get('SELF_DELETE_SECONDS', 180))
+SELF_DELETE_SECONDS = int(environ.get('SELF_DELETE_SECONDS', 300))
 SELF_DELETE = environ.get('SELF_DELETE', True)
 if SELF_DELETE == "True":
     SELF_DELETE = True
 
 # Download Tutorial Button #
-DOWNLOAD_TEXT_NAME = "📥 HOW TO DOWNLOAD 📥"
-DOWNLOAD_TEXT_URL = "https://t.me/LazyDeveloper"
+DOWNLOAD_TEXT_NAME = "📥 How To Download 📥"
+DOWNLOAD_TEXT_URL = "https://t.me/Star_Channels_Tamil"
 
 # Custom Caption Under Button #
 CAPTION_BUTTON = "Get Updates"
-CAPTION_BUTTON_URL = "https://t.me/LazyDeveloper"
-
-# _______________________________________________________________________________________________________________ #
-# __________________________________________Credit_______________________________________________________________ #
-# _______________________________________LazyDeveloper___________________________________________________________ #
-# _____________________________A real Developer always gives Credits_____________________________________________ #
+CAPTION_BUTTON_URL = "https://t.me/Star_Channels_Tamil"
 
 LOG_STR = "Current Cusomized Configurations are:-\n"
 LOG_STR += ("IMDB Results are enabled, Bot will be showing imdb details for you queries.\n" if IMDB else "IMBD Results are disabled.\n")
@@ -108,4 +144,10 @@ LOG_STR += ("Long IMDB storyline enabled." if LONG_IMDB_DESCRIPTION else "LONG_I
 LOG_STR += ("Spell Check Mode Is Enabled, bot will be suggesting related movies if movie not found\n" if SPELL_CHECK_REPLY else "SPELL_CHECK_REPLY Mode disabled\n")
 LOG_STR += (f"MAX_LIST_ELM Found, long list will be shortened to first {MAX_LIST_ELM} elements\n" if MAX_LIST_ELM else "Full List of casts and crew will be shown in imdb template, restrict them by adding a value to MAX_LIST_ELM\n")
 LOG_STR += f"Your current IMDB template is {IMDB_TEMPLATE}"
-
+# Credit @LazyDeveloper.
+# Please Don't remove credit.
+# Born to make history @LazyDeveloper !
+# Thank you LazyDeveloper for helping us in this Journey
+# 🥰  Thank you for giving me credit @LazyDeveloperr  🥰
+# for any error please contact me -> telegram@LazyDeveloperr or insta @LazyDeveloperr 
+# rip paid developers 🤣 - >> No need to buy paid source code while @LazyDeveloperr is here 😍😍

@@ -3,8 +3,15 @@
         # Born to make history @LazyDeveloper !
 
     # Thank you LazyDeveloper for helping us in this Journey
-from pyrogram import Client, filters 
+from pyrogram import Client, filters
 from database.users_chats_db import db
+
+
+
+
+
+
+
 
 @Client.on_message(filters.private & filters.command('set_caption'))
 async def add_caption(client, message):
@@ -31,9 +38,3 @@ async def see_caption(client, message):
     else:
        await message.reply_text("😔**Sorry ! No Caption found...**😔")
 
-
-# _______________________________________________________________________________________________________________ #
-# __________________________________________Credit_______________________________________________________________ #
-# _______________________________________LazyDeveloper___________________________________________________________ #
-# _____________________________A real Developer always gives Credits_____________________________________________ #
-# _______________________________________________________________________________________________________________ #

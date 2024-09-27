@@ -1,7 +1,14 @@
+# Credit @LazyDeveloper.
+# Please Don't remove credit.
+# Born to make history @LazyDeveloper !
+# Thank you LazyDeveloper for helping us in this Journey
+# 🥰  Thank you for giving me credit @LazyDeveloperr  🥰
+# for any error please contact me -> telegram@LazyDeveloperr or insta @LazyDeveloperr 
+# rip paid developers 🤣 - >> No need to buy paid source code while @LazyDeveloperr is here 😍😍
 import logging
 from pyrogram.errors import InputUserDeactivated, UserNotParticipant, FloodWait, UserIsBlocked, PeerIdInvalid
 from info import *
-from imdb import Cinemagoer
+from imdb import IMDb
 import asyncio
 from pyrogram.types import Message, InlineKeyboardButton
 from pyrogram import enums
@@ -22,7 +29,7 @@ BTN_URL_REGEX = re.compile(
     r"(\[([^\[]+?)\]\((buttonurl|buttonalert):(?:/{0,2})(.+?)(:same)?\))"
 )
 
-imdb = Cinemagoer()
+imdb = IMDb() 
 
 BANNED = {}
 SMART_OPEN = '“'
@@ -40,7 +47,7 @@ class temp(object):
     U_NAME = None
     B_NAME = None
     SETTINGS = {}
-    
+
 async def is_subscribed(bot, query):
     try:
         user = await bot.get_chat_member(AUTH_CHANNEL, query.from_user.id)
@@ -158,7 +165,7 @@ async def broadcast_messages(user_id, message):
 async def search_gagala(text):
     usr_agent = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
-        'Chrome/61.0.3163.100 Safari/537.36'
+        'Chrome/109.0.5414.120 Safari/537.36'
         }
     text = text.replace(" ", '+')
     url = f'https://www.google.com/search?q={text}'
@@ -376,35 +383,59 @@ def humanbytes(size):
         size /= power
         n += 1
     return str(round(size, 2)) + " " + Dic_powerN[n] + 'B'
-
+    
 async def get_shortlink(link):
     https = link.split(":")[0]
     if "http" == https:
         https = "https"
         link = link.replace("http", https)
-
-    url = f'https://api.shareus.in/shortLink'
-    params = {'token': URL_SHORTNER_WEBSITE_API,
-              'link': link,
-              'format': 'json'
+    url = f'https://{URL_SHORTENR_WEBSITE}/api'
+    params = {'api': URL_SHORTNER_WEBSITE_API,
+              'url': link,
               }
 
     try:
         async with aiohttp.ClientSession() as session:
             async with session.get(url, params=params, raise_for_status=True, ssl=False) as response:
-                data = await response.json(content_type='text/html')
+                data = await response.json()
                 if data["status"] == "success":
-                    return data['shortlink']
+                    return data['shortenedUrl']
                 else:
                     logger.error(f"Error: {data['message']}")
-                    return f'https://api.shareus.in/directLink?token={URL_SHORTNER_WEBSITE_API}&link={link}'
+                    return f'https://{URL_SHORTENR_WEBSITE}/api?api={URL_SHORTNER_WEBSITE_API}&link={link}'
 
     except Exception as e:
         logger.error(e)
-        return f'https://api.shareus.in/directLink?token={URL_SHORTNER_WEBSITE_API}&link={link}'
-# _______________________________________________________________________________________________________________ #
-# __________________________________________Credit_______________________________________________________________ #
-# _______________________________________LazyDeveloper___________________________________________________________ #
-# _____________________________A real Developer always gives Credits_____________________________________________ #
-# ___________________________B O R N -- T O -- M A K E -- H I S T O R Y__________________________________________ #
-# _______________________________________________________________________________________________________________ #
+        return f'{URL_SHORTENR_WEBSITE}/api?api={URL_SHORTNER_WEBSITE_API}&link={link}'
+
+
+
+def get_readable_time(seconds: int) -> str:
+    count = 0
+    readable_time = ""
+    time_list = []
+    time_suffix_list = ["s", "m", "h", " days"]
+    while count < 4:
+        count += 1
+        if count < 3:
+            remainder, result = divmod(seconds, 60)
+        else:
+            remainder, result = divmod(seconds, 24)
+        if seconds == 0 and remainder == 0:
+            break
+        time_list.append(int(result))
+        seconds = int(remainder)
+    for x in range(len(time_list)):
+        time_list[x] = str(time_list[x]) + time_suffix_list[x]
+    if len(time_list) == 4:
+        readable_time += time_list.pop() + ", "
+    time_list.reverse()
+    readable_time += ": ".join(time_list)
+    return readable_time 
+# Credit @LazyDeveloper.
+# Please Don't remove credit.
+# Born to make history @LazyDeveloper !
+# Thank you LazyDeveloper for helping us in this Journey
+# 🥰  Thank you for giving me credit @LazyDeveloperr  🥰
+# for any error please contact me -> telegram@LazyDeveloperr or insta @LazyDeveloperr 
+# rip paid developers 🤣 - >> No need to buy paid source code while @LazyDeveloperr is here 😍😍

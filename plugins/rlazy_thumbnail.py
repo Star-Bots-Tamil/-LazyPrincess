@@ -1,8 +1,11 @@
     # Credit @LazyDeveloper.
     # Please Don't remove credit.
-        # Born to make history @LazyDeveloper !
+    # Born to make history @LazyDeveloper !
 
     # Thank you LazyDeveloper for helping us in this Journey
+    # 🥰  Thank you for giving me credit @LazyDeveloperr  🥰
+
+    # for any error please contact me -> telegram@LazyDeveloperr or insta @LazyDeveloperr 
 
 from pyrogram import Client, filters
 from database.users_chats_db import db
@@ -28,9 +31,3 @@ async def addthumbs(client, message):
     await db.set_thumbnail(message.from_user.id, file_id=message.photo.file_id)                
     await LazyDev.edit("**Thumbnail saved successfully**✅️")
 	
-
-# _______________________________________________________________________________________________________________ #
-# __________________________________________Credit_______________________________________________________________ #
-# _______________________________________LazyDeveloper___________________________________________________________ #
-# _____________________________A real Developer always gives Credits_____________________________________________ #
-# _______________________________________________________________________________________________________________ #
